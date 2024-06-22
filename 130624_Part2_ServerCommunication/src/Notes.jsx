@@ -13,6 +13,7 @@ function Notes() {
             id: notesList.length + 1,
             important: Math.random() > 0.5
         }
+        //Just another way to update state
         /* const newList = [...notesList, newNote]
         setNotesList(newList) */
         setNotesList(prevList => [...prevList, newNote])
