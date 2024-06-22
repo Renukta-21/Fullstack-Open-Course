@@ -7,7 +7,8 @@ function Notes() {
     const [notesList, setNotesList] = useState(notes)
 
 
-    function handleSubmit() {
+    function handleSubmit(e) {
+        e.preventDefault()
         const newNote = {
             content: inValue,
             id: notesList.length + 1,
@@ -22,15 +23,34 @@ function Notes() {
     return (
         <div>
             <h2>Notes List</h2>
-            <ul>
-                {notesList.map(note => <li key={note.id}>{note.content} <span className={note.important ? "important" : 'not-important'}>{note.important?'important':'not-important'}</span></li>)}
-            </ul>
-            <div>
-                <input type="text" onChange={e => setInValue(e.target.value)} value={inValue} autoFocus/>
-                <button onClick={handleSubmit}>Add note</button>
-            </div>
+            <tt>Fullstack Open Practice - Second Section Course</tt>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Note</th>
+                        <th>Importance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {notesList.map(note=><NoteLine key={note.id} note={note}/>)}
+                </tbody>
+            </table>
+            <form action="POST" onSubmit={handleSubmit}>
+                <input type="text"value={inValue} autoFocus onChange={e=>setInValue(e.target.value)} placeholder="Add a note here"/>
+                <button>Add Note</button>
+            </form>
+            <p>&copy; EDUARDO DANIEL URBINA MARTINEZ &copy;</p>
         </div>
     )
 }
 
+function NoteLine({note}){
+    const {content, important} = note 
+    return(
+        <tr>
+            <td>{content}</td>
+            <td className={important?'impCeld':''}><span className={note.important ? "important" : 'not-important'}>{note.important?'important':'not-important'}</span></td>
+        </tr>
+    )
+}
 export default Notes

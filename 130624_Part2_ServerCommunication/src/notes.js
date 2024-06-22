@@ -11,3 +11,4 @@ export const notes = [
     }
 
 ]
+export default notes
