@@ -9,6 +9,5 @@ export const notes = [
         id: 2,
         important: false
     }
-
 ]
 export default notes

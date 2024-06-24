@@ -12,7 +12,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+*{
+  box-sizing: border-box;
+}
 a {
   font-weight: 500;
   color: #646cff;
@@ -21,16 +23,62 @@ a {
 a:hover {
   color: #535bf2;
 }
-
-body {
-  margin: 0;
+.card{
+  padding: 0px 10px;
+}
+html{
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
+body {
+  height: 100%;
+  /* background-color: #535bf2; */
+}
+@media screen and (max-width:400px) {
+  form{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  form input[type="text"]{
+    padding: 5px 10px;
+    width: 100%;
+  }
+  .check {
+    display: flex;
+    justify-content: center;
 
+  }
+  .middButton{
+    display: flex;
+    justify-content: space-between;
+  }
+  .middButton button{
+    width: 100%;
+  }
+}
+th:last-child{
+  width: 10%;
+}
+tr td:last-child{
+  display: flex;
+  border-collapse: collapse;
+  align-items: center;
+  justify-content: center;
+  /* display: flex; */
+}
+.delButton{
+  /* cursor: pointer; */
+  background-color: #1a1a1a;
+}
+.delButton button{
+  display: block;
+  background-color: gainsboro;
+  cursor: pointer;
+  
+}
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -77,12 +125,15 @@ li{
 }
 table{
   border: 1px solid white;
-  width: 300px;
+  width: 100%;
   text-align: left;
   border-collapse: collapse;
 }
 th, td{
   padding: 10px 5px;
+  
+}
+th{
   border: 1px solid white;
 }
 .impCeld{
@@ -114,7 +165,29 @@ p{
 }
 .check{
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
   margin: 0px 10px;
+}
+.middButton button:nth-child(2){
+  margin-left: 10px;
+  background-color: #21354700;
+  border: 1px solid white;
+}
+/* styles.css */
+
+@keyframes slideOut {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.slide-out {
+  animation: slideOut 0.5s forwards;
 }
