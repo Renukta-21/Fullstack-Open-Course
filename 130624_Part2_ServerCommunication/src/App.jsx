@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { notes } from "./notes"
+
 
 function App() {
 
@@ -8,11 +9,17 @@ function App() {
     const [actFilter, setActFilter] = useState(false)
     const [isImportant, setIsImportant] = useState(false)
 
+    useEffect(() => {
+      console.log(notesList)
+    }, [notesList])
+    
     function handleSubmit(e) {
+        const newId = notesList.length>0? Math.max(...notesList.map(note=>note.id))+1:0
+        console.log(newId)
         e.preventDefault()
         const newNote = {
             content: inValue,
-            id: notesList.length + 1,
+            id: newId,
             important: isImportant
         }
         //Just another way to update state
@@ -29,13 +36,18 @@ function App() {
     const handleDeleteAll = () => {
         const allRows = document.querySelectorAll('.tr')
         allRows.forEach((row, index) => {
+            const rowId = row.id.split('-')[1]
             setTimeout(()=>{
                 row.classList.add('slide-out')
                 setTimeout(()=>{
-                    setNotesList(prevNotes => prevNotes.filter(note=>note.id!==index+1))
+                    /* row.remove() */
+                    console.log(rowId)
+                    setNotesList(prevNote=>prevNote.filter(note=>note.id!==Number(rowId)))
                 },300)
             },index*300)
         })
+        
+        
     }
 
     const handleDelete = (id) => {
@@ -87,7 +99,7 @@ function NoteLine({ note, handleDelete }) {
     const { content, important, id } = note
     return (
         <tr id={`tr-${id}`} className="tr">
-            <td>{content}</td>
+            <td>{content} </td>
             <td className={important ? 'impCeld' : ''}><span className={note.important ? "important" : 'not-important'}>{note.important ? 'important' : 'not-important'}</span></td>
             <td className="delButton"><button onClick={() => handleDelete(id)}></button></td>
         </tr>
