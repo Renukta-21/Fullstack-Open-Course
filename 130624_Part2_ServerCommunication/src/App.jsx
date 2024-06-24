@@ -30,13 +30,14 @@ function App() {
         })
 
         setInValue('')
-
+    
     }
     const handleFilter = () => setActFilter(!actFilter)
     const handleDeleteAll = () => {
         const allRows = document.querySelectorAll('.tr')
         allRows.forEach((row, index) => {
             const rowId = row.id.split('-')[1]
+            console.log(index, 300 , index*300)
             setTimeout(()=>{
                 row.classList.add('slide-out')
                 setTimeout(()=>{

@@ -2,6 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App'
+/* import PhoneBook from './PhoneBook' */
+import FetchNotes from './FetchNotes'
+import PhoneBook from './PhoneBook'
+import axios from 'axios'
 
 /* const notes = [
   {
@@ -22,5 +26,5 @@ import App from './App'
 ] */
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <App />
+  <FetchNotes />
 )
