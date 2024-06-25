@@ -16,7 +16,10 @@ const PhoneBook = () => {
     const handleNumbChange = (e) => setNewNumber(e.target.value)
     const handleFilter = (e) => setNewFilter(e.target.value)
 
-    const filteredPersons = persons.filter(person => person.name.toLowerCase().includes(newFilter))
+    const doFilter = () => {
+        return persons.filter(person => person.name.includes(newFilter))
+    }
+
 
 
     const handleSubmit = (e) => {
@@ -41,50 +44,51 @@ const PhoneBook = () => {
         <div>
             <h2>Phonebook</h2>
             <tt>This application does not support registrations with repeated names and has search filters.</tt>
-            <AddNewPerson handleSubmit={handleSubmit} handleChange={handleChange} handleNumbChange={handleNumbChange} newName={newName} newNumber={newNumber}/>
+            <AddNewPerson handleSubmit={handleSubmit} handleChange={handleChange} handleNumbChange={handleNumbChange} newName={newName} newNumber={newNumber} />
             <h2>Contacts</h2>
-            <FilterInput handleFilter={handleFilter}/>
+            <FilterInput handleFilter={handleFilter} />
+            <h4>{newFilter}</h4>
             <br />
-            {persons.length>0 &&<ContactList filteredPersons={filteredPersons}/>}
+            {persons.length > 0 && <ContactList filteredPersons={doFilter()} />}
         </div>
     )
 }
 
-function FilterInput({handleFilter}) {
+function FilterInput({ handleFilter }) {
     return (
         <div><h5>Filter by name</h5> <input type="text" onChange={handleFilter} />
         </div>
     )
 }
-function AddNewPerson({handleSubmit, handleChange, handleNumbChange, newName, newNumber}){
-    return(
+function AddNewPerson({ handleSubmit, handleChange, handleNumbChange, newName, newNumber }) {
+    return (
         <form onSubmit={handleSubmit}>
-                <div>
-                    name: <input onChange={handleChange} value={newName} />
-                    number: <input onChange={handleNumbChange} value={newNumber} />
-                    <br />
-                    <button type="submit">add</button>
+            <div>
+                name: <input onChange={handleChange} value={newName} />
+                number: <input onChange={handleNumbChange} value={newNumber} />
+                <br />
+                <button type="submit">add</button>
 
-                </div>
-            </form>
+            </div>
+        </form>
     )
 }
-function ContactList({filteredPersons}){
-    return(
+function ContactList({ filteredPersons }) {
+    return (
         <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Number</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredPersons.map((person) => <tr key={person.name}>
-                            <td>{person.name}</td>
-                            <td>{person.number}</td>
-                        </tr>)}
-                    </tbody>
-                </table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                {filteredPersons.map((person) => <tr key={person.name}>
+                    <td>{person.name}</td>
+                    <td>{person.number}</td>
+                </tr>)}
+            </tbody>
+        </table>
     )
 }
 export default PhoneBook
