@@ -1,0 +1,29 @@
+{
+  "notes": [
+    {
+      "id": "1",
+      "content": "Contenido 1",
+      "important": true
+    },
+    {
+      "id": "2",
+      "content": "Contenido 2",
+      "important": false
+    },
+    {
+      "id": "3",
+      "content": "Contenido 3",
+      "important": false
+    },
+    {
+      "id": "4",
+      "content": "Contenido 4",
+      "important": true
+    },
+    {
+      "id": "5",
+      "content": "Contenido 5",
+      "important": true
+    }
+  ]
+}

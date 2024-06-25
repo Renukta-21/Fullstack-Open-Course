@@ -1,11 +1,15 @@
+/*eslint-disable no-unused-vars*/
+
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App'
 /* import PhoneBook from './PhoneBook' */
-import FetchNotes from './FetchNotes'
+import FetchPosts from './FetchPosts'
 import PhoneBook from './PhoneBook'
 import axios from 'axios'
+import AxiosFetch from './AxiosFetch'
+import AxiosNotes from './AxiosNotes'
 
 /* const notes = [
   {
@@ -26,5 +30,5 @@ import axios from 'axios'
 ] */
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <FetchNotes />
+  <AxiosNotes />
 )

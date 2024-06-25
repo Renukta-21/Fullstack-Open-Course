@@ -197,3 +197,23 @@ p{
   padding: 10px;
   margin: 10px 0px;
 }
+.todoCard{
+  display: flex;
+  align-items: center;
+  background-color: #213547;
+  padding: 10px;
+  margin: 10px 0px;
+}
+.todoCard tt{
+  background-color: #535bf2;
+  width: 50%;
+}
+.axiosNotes{
+  background-color: #213547;
+  padding: 10px;
+  margin: 10px 0px;
+}
+.axiosNotes button{
+  display: block;
+  margin: 5px 0px;
+}

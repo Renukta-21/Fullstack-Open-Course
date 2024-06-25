@@ -1,20 +1,29 @@
 import { useEffect, useState } from "react"
-import { notes } from "./notes"
-
 
 function App() {
-
+    const notes = [
+        {
+            content: 'Frist Note',
+            id: 1,
+            important: true
+        },
+        {
+            content: 'Second Note',
+            id: 2,
+            important: false
+        }
+    ]
     const [inValue, setInValue] = useState('')
     const [notesList, setNotesList] = useState(notes)
     const [actFilter, setActFilter] = useState(false)
     const [isImportant, setIsImportant] = useState(false)
 
     useEffect(() => {
-      console.log(notesList)
+        console.log(notesList)
     }, [notesList])
-    
+
     function handleSubmit(e) {
-        const newId = notesList.length>0? Math.max(...notesList.map(note=>note.id))+1:0
+        const newId = notesList.length > 0 ? Math.max(...notesList.map(note => note.id)) + 1 : 0
         console.log(newId)
         e.preventDefault()
         const newNote = {
@@ -30,25 +39,25 @@ function App() {
         })
 
         setInValue('')
-    
+
     }
     const handleFilter = () => setActFilter(!actFilter)
     const handleDeleteAll = () => {
         const allRows = document.querySelectorAll('.tr')
         allRows.forEach((row, index) => {
             const rowId = row.id.split('-')[1]
-            console.log(index, 300 , index*300)
-            setTimeout(()=>{
+            console.log(index, 300, index * 300)
+            setTimeout(() => {
                 row.classList.add('slide-out')
-                setTimeout(()=>{
+                setTimeout(() => {
                     /* row.remove() */
                     console.log(rowId)
-                    setNotesList(prevNote=>prevNote.filter(note=>note.id!==Number(rowId)))
-                },300)
-            },index*300)
+                    setNotesList(prevNote => prevNote.filter(note => note.id !== Number(rowId)))
+                }, 300)
+            }, index * 300)
         })
-        
-        
+
+
     }
 
     const handleDelete = (id) => {

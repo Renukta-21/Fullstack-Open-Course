@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import data from './dbPhone.json'
+import data from './json-server-DB/dbPhoneBook.json'
 
 //"This application does not support registrations with repeated names and has search filters." EDUARDO DANIEL URBINA MARTINEZ
 
@@ -16,9 +16,8 @@ const PhoneBook = () => {
     const handleNumbChange = (e) => setNewNumber(e.target.value)
     const handleFilter = (e) => setNewFilter(e.target.value)
 
-    const doFilter = () => {
-        return persons.filter(person => person.name.includes(newFilter))
-    }
+    
+    const filteredPersons=persons.filter(person => person.name.toLowerCase().includes(newFilter))
 
 
 
@@ -49,7 +48,7 @@ const PhoneBook = () => {
             <FilterInput handleFilter={handleFilter} />
             <h4>{newFilter}</h4>
             <br />
-            {persons.length > 0 && <ContactList filteredPersons={doFilter()} />}
+            {persons.length > 0 && <ContactList filteredPersons={filteredPersons} />}
         </div>
     )
 }
