@@ -1,0 +1,9 @@
+# Ignorar node_modules en la raíz del proyecto
+/node_modules
+/.vscode
+# Ignorar node_modules dentro de cada directorio de proyecto
+/client/node_modules
+/server/node_modules
+
+# Otros archivos y directorios a ignorar según sea necesario
+# Por ejemplo, archivos locales de configuración, logs, etc.
