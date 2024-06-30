@@ -26,10 +26,38 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
+  justify-content: center;
   min-width: 320px;
   min-height: 100vh;
 }
+*{
+  box-sizing: border-box;
+}
+.card{
+  background-color: #213547;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px;
+}
+form{
+  display: flex;
+}
+@media screen and (max-width:400px) {
+  form{
+    flex-direction: column;
+    gap: 5px;
+  }
+  form input:last-of-type{
+    margin-bottom: 10px;
+  }
+}
 
+p{
+  margin: 0px;
+}
+h4{
+  margin: 0px;
+}
 h1 {
   font-size: 3.2em;
   line-height: 1.1;

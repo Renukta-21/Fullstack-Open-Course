@@ -1,34 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
+
+
+const baseURL = `/contacts`
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [contacts, setContacts] = useState(null)
+  const [name, setName] = useState('')
+  const [number, setNumber] = useState('')
+
+  useEffect(() => {
+    fetch(baseURL)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Ha ocurrido un error con la peticion')
+        }
+        return response.json()
+      })
+      .then(data => setContacts(data))
+      .catch(err => console.log(err.message))
+  }, [name])
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const newContact = {
+      name: name,
+    }
+    fetch(baseURL, {
+      method: "POST",
+      body: name!=='' ? JSON.stringify(newContact): undefined,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json()).then(data => {
+      name!==''&& setContacts(prevList => prevList.concat({id:data.id, ...newContact}))
+      setName('')
+      setNumber('')
+    })
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <h2>Phonebook RESTful</h2>
+      {contacts &&
+        contacts.map(contact => (
+          <div key={contact.id} className='card'>
+            <h4>{contact.id}</h4>
+            <p>{contact.name}</p>
+            <p>{contact.number}</p>
+          </div>
+        )
+        )
+      }
+      <form onSubmit={handleSubmit}>
+        Name<input type="text" onChange={e => setName(e.target.value)} value={name} />
+        Number <input type="text" onChange={e => setNumber(e.target.value)} value={number} />
+        <button>POST</button>
+      </form>
+    </div>
   )
 }
 
