@@ -30,6 +30,9 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+div{
+  max-width: 800px;
+}
 *{
   box-sizing: border-box;
 }
@@ -38,17 +41,35 @@ body {
   border-radius: 10px;
   padding: 5px;
   margin: 10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.card div:last-of-type input{
+  display: block;
+  margin: 3px 0px;
 }
 form{
   display: flex;
 }
-@media screen and (max-width:400px) {
+.errBox{
+  border: 1px solid red;
+  padding: 5px;
+  border-radius: 10px;
+}
+@media screen and (max-width:450px) {
   form{
     flex-direction: column;
     gap: 5px;
   }
   form input:last-of-type{
     margin-bottom: 10px;
+  }
+  .card{
+    flex-direction: column;
+    gap: 5px;
+  }
+  div{
+    padding: 0px 10px;
   }
 }
 
