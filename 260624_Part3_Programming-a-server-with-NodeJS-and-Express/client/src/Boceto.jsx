@@ -1,6 +1,6 @@
 function Boceto() {
     return (
-        <div><h1>Boceto</h1></div>
+        <div><h1>Boceto ass</h1></div>
     )
 }
 
